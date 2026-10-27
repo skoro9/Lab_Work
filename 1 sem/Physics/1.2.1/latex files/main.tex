@@ -1,0 +1,224 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{cmap}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools,mathtext}
+\usepackage[left=1cm,right=1cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=blue]{hyperref}
+\usepackage{physics}
+\usepackage{esvect}
+\usepackage{icomma}
+\usepackage{indentfirst}
+\usepackage[labelsep=period,justification=centering]{caption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{tabularray}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\title{Лабораторная работа 1.2.1. Определение скорости пули при помощи маятника}
+\author{Aleksandr Chirkin}
+\date{October 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{Аннотация}
+В работе определяется скорость полёта пули при помощи баллистических маятников,
+производится оценка погрешности измерений.
+
+\section{Теоретические сведения}
+\subsection{Баллистический маятник, совершающий поступательное движение}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{setup1.pdf}
+    \caption{Баллистический маятник, совершающий поступательное движение}
+    \label{fig:setup1}
+\end{figure}
+
+В первом опыте использовалась установка, представленная на рисунке
+\ref{fig:setup1}. Пусть масса маятника $M$, масса пули $m$, $m \ll M$. Тогда
+скорость пули выражается по формуле 
+\[
+    u \approx \frac{M}{m}V
+\]
+
+Используя закон сохранения механической энергии, для малых углов отклонения
+получим формулу скорости пули:
+\begin{equation}
+    \label{eq:bullet_speed1}
+    u = \frac{M}{m}\sqrt{\frac{g}{L}}\Delta x
+\end{equation}
+
+\subsection{Баллистический маятник, совершающий вращательное движение}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{setup2.pdf}
+    \caption{Баллистический маятник, совершающий вращательное движение}
+    \label{fig:setup2}
+\end{figure}
+
+Во втором опыте использовалась установка, представленная на рисунке
+\ref{fig:setup2}. $r$ --- расстояние от линии полёта пули до оси вращения
+маятника, $I$ --- момент инерции маятника, $\Omega$ --- его угловая скорость
+сразу после удара. $M$ --- масса грузов, $m$ --- масса пули.
+По законам сохранения энергии и момента импульса:
+$$mur = I\Omega, \quad k\frac{\varphi^2}{2} = I\frac{\Omega^2}{2}$$
+Так как угол $\varphi$ мал:
+$$\varphi \approx \frac{x}{2d}$$
+Период колебания маятника с грузами и без грузов:
+$$T_1 = 2\pi\sqrt{\frac{I}{k}}, \quad T_2 = 2\pi\sqrt{\frac{I-2MR^2}{k}}$$
+
+Окончательно получим:
+\begin{equation}
+    \label{eq:bullet_speed2}
+    u = \frac{4\pi MR^2T_1x}{(T_1^2-T_2^2)2mrd}
+\end{equation}
+
+Кроме того, как и в любом другом эксперименте, нам необходимо учесть погрешность измерений:
+
+Для поступательного маятника формула относительной погрешности выглядит следующим образом:
+\begin{equation}
+\varepsilon_u = 100\% \cdot \sqrt{ 
+    \begin{aligned}[t]
+        & \left(\frac{\Delta M}{M}\right)^2 + \left(\frac{\Delta m}{m}\right)^2 + \left(\frac{\Delta L}{2L}\right)^2 + {} \\
+        & + \left(\frac{\Delta(\Delta x)}{\Delta x}\right)^2
+    \end{aligned}
+}
+\end{equation}
+
+Для вращательного маятника:
+\begin{equation}
+\begin{aligned}
+\varepsilon_u = 100\% \cdot \sqrt{ 
+    \begin{aligned}[t]
+        & \left(\frac{\Delta M}{M}\right)^2 + \left(2\frac{\Delta R}{R}\right)^2 + \left(\frac{\Delta x}{x}\right)^2 + \left(\frac{\Delta m}{m}\right)^2 + {} \\
+        & + \left(\frac{\Delta r}{r}\right)^2 + \left(\frac{\Delta d}{d}\right)^2 + \left(\frac{T_1^2 + T_2^2}{T_1(T_1^2 - T_2^2)} \Delta T_1\right)^2 + \left(\frac{2T_2}{T_1^2 - T_2^2} \Delta T_2\right)^2
+    \end{aligned}
+}
+\end{aligned}
+\end{equation}
+
+\section{Измеренные данные}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Массы пуль}
+    \label{tab:bullet_weights}
+    \begin{tabular}{cc}
+        \toprule
+        Номер пули & Масса пули, г \\
+        \midrule
+        1 & 0.506 \\
+        2 & 0.511 \\
+        3 & 0.505 \\
+        4 & 0.517 \\
+        5 & 0.505 \\
+        6 & 0.508 \\
+        7 & 0.512 \\
+        8 & 0.502 \\
+        9 & 0.509 \\
+        10 & 0.511 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Инерциальный баллистический маятник}
+Для инерциального маятника $M = 2925 \pm 5 \text{ г}$, $L = 208.2 \pm 0.2 \text{ см}$.
+
+\begin{table}[H]
+    \centering
+    \caption{Параметры пуль}
+    \label{tab:bullets_data}
+    \begin{tabular}{ccc}
+        \toprule
+        № пули & Амплитуда $\Delta x$, мм & Масса $m$, г \\
+        \midrule
+        1 & 12.0 & 0.506 \\
+        2 & 12.0 & 0.511 \\
+        3 & 11.5 & 0.505 \\
+        4 & 12.0 & 0.517 \\
+        5 & 11.4 & 0.505 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Погрешности измеренных величин составляют: $\Delta(\Delta x) = 0.1 \text{ мм}$, $\Delta(m) = 0.001 \text{ г}$.
+После подстановки в формулы (1) и (3) получаем результаты, представленные в таблице \ref{tab:bullet_speed_errors}.
+
+\begin{table}[H]
+    \centering
+    \caption{Результаты расчета скорости и погрешностей}
+    \label{tab:bullet_speed_errors}
+    \begin{tabularx}{\textwidth}{c>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+        \toprule
+        № пули & Скорость $u$, м/с & Относительная погрешность $\varepsilon_u$, \% & Абсолютная погрешность $\Delta u$, м/с \\
+        \midrule
+        1 & 150.497 & 2.598 & 3.910 \\
+        2 & 149.025 & 2.583 & 3.849 \\
+        3 & 144.512 & 2.648 & 3.827 \\
+        4 & 147.295 & 2.566 & 3.779 \\
+        5 & 143.256 & 2.658 & 3.808 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+По итогам можно установить, что скорость пули в опытах 1 - 5 была равна $u = 146.917 \pm 3.835 \text{ м/с}$.
+\subsection{Крутильный баллистический маятник}
+
+Для крутильного маятника $M = 1468,7 \pm 0.2 \text{ г}$, $R = 34 \pm 0.1\text{ см} $, $r = 19 \pm 0.1\text{ см} $, $d = 135 \pm 0.1\text{ см} $, $T_1 = 6,56 \pm 0.1 \text{ с}$, $T_2 = 4,85  \pm 0.1 \text{ с}$
+
+\begin{table}[htbp]
+    \centering
+    \caption{Параметры пуль (продолжение, 6--10 опыты)}
+    \label{tab:bullets_data_2}
+    \begin{tabular}{ccc}
+        \toprule
+        № пули & Амплитуда $\Delta x$, см & Масса $m$, г \\
+        \midrule
+        6 & 3,9  & 0.508 \\
+        7 & 4,0  & 0.512 \\
+        8 & 4,1  & 0.502 \\
+        9 & 4,0  & 0.509 \\
+        10 & 4,0 & 0.511 \\
+        \bottomrule
+    \end{tabular}
+Погрешности измеренных величин составляют: $\Delta(\Delta x) = 1 \text{ мм}$, $\Delta(m) = 0.001 \text{ г}$.
+\end{table}
+
+После подстановки в формулы (2) и (4) получаем результаты, представленные в таблице 
+
+\begin{table}[htbp]
+    \centering
+    \caption{Результаты расчета скорости и погрешностей (продолжение, 6--10 опыты)}
+    \label{tab:bullet_speed_errors_2}
+    \begin{tabularx}{\textwidth}{c>{\centering\arraybackslash}X>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+        \toprule
+        № пули & Скорость $u$, м/с & Относительная погрешность $\varepsilon_u$, \% & Абсолютная погрешность $\Delta u$, м/с \\
+        \midrule
+        6 & 107.351 & 7.928 & 8.510 \\
+        7 & 109.243 & 7.904 & 8.634 \\
+        8 & 114.205 & 7.894 & 9.015 \\
+        9 & 109.887 & 7.907 & 8.689 \\
+        10 & 109.457 & 7.905 & 8.653 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+По итогам можно установить, что скорость пули в опытах 6-10 была равна $u = 110,05 \pm 8,7 \text{ м/c}$
+
+\section{Выводы}
+В работе удалось произвести измерение скорости пули с точностью порядка 2,5\% на
+баллисти\-ческом маятнике, совершающем поступательное движение, и с точностью
+порядка 8\% на крутильном баллистическом маятнике. Наибольший вклад
+в погрешность составляют погреш\-ности измерения расстояний, которые являются
+высокими из-за особенностей проведения опыта, и их можно снизить. Разброс
+значений не даёт возможности определить зависимость скорости пули от её массы,
+для этого требуется проводить существенно более точные измерения.
+\end{document}
